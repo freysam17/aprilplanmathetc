@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATHETC × ASKA — April Summer Campaign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --white-soft: rgba(255, 255, 255, 0.7);
+            --white-glass: rgba(255, 255, 255, 0.25);
+            --white-border: rgba(255, 255, 255, 0.4);
+            --off-white: #fefefe;
+            --light-gray: rgba(245, 245, 247, 0.6);
+            --border-light: rgba(0, 0, 0, 0.06);
+            --text-primary: #1a1a1a;
+            --text-secondary: rgba(60, 60, 67, 0.6);
+            --text-tertiary: rgba(60, 60, 67, 0.4);
+            --orange-primary: #ff8c5a;
+            --orange-soft: rgba(255, 140, 90, 0.15);
+            --orange-border: rgba(255, 140, 90, 0.3);
+            --orange-glow: rgba(255, 140, 90, 0.1);
+            --gradient-warm: linear-gradient(135deg, #fff5f0 0%, #fef0e6 50%, #f5f0ff 100%);
+            --gradient-cool: linear-gradient(180deg, #f8f9ff 0%, #fff8f5 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.04);
+            --shadow-glass: 0 8px 32px rgba(31, 38, 135, 0.05);
+            --shadow-glow: 0 4px 24px rgba(255, 140, 90, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--gradient-cool);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Ambient Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .ambient-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(255, 180, 150, 0.3), rgba(255, 140, 90, 0.2));
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .ambient-orb-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(200, 180, 255, 0.25), rgba(150, 140, 255, 0.15));
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -7s;
+        }
+
+        .ambient-orb-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(255, 200, 180, 0.2), rgba(255, 160, 130, 0.15));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Glass Effect Mixin */
+        .glass {
+            background: var(--gradient-glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--white-border);
+            box-shadow: var(--shadow-glass);
+        }
+
+        .glass-subtle {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-solid {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            border-radius: 20px;
+            padding: 0 8px;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .nav-logo span {
+            color: var(--orange-primary);
+        }
+
+        .nav-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text-tertiary);
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-badge {
+            background: var(--orange-soft);
+            color: var(--orange-primary);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            border: 1px solid var(--orange-border);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 24px 120px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--orange-primary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.9); }
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 8vw, 72px);
+            font-weight: 700;
+            letter-spacing: -2.5px;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--orange-primary) 0%, #ffaa80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 19px;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto 48px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .hero-brands {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 56px;
+        }
+
+        .brand-card {
+            padding: 24px 36px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .brand-card .name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-card .name span {
+            color: var(--orange-primary);
+        }
+
+        .brand-card .desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            padding: 40px;
+            border-radius: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .stat-value .unit {
+            font-size: 24px;
+            color: var(--orange-primary);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--orange-primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            padding: 6px 14px;
+            background: var(--orange-soft);
+            border-radius: 8px;
+            border: 1px solid var(--orange-border);
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+            line-height: 1.15;
+            color: var(--text-primary);
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Glass Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .glass-card {
+            padding: 36px;
+            border-radius: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--orange-primary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .glass-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .glass-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .value-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .value-tag {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Message Banner */
+        .message-banner {
+            border-radius: 28px;
+            padding: 48px;
+            text-align: center;
+            margin: 48px 0;
+            background: linear-gradient(135deg, rgba(255, 140, 90, 0.08) 0%, rgba(200, 180, 255, 0.08) 100%);
+            border: 1px solid rgba(255, 140, 90, 0.15);
+        }
+
+        .message-banner .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .message-banner h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .message-banner h3 span {
+            color: var(--orange-primary);
+        }
+
+        /* Data Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 32px 0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: rgba(26, 26, 26, 0.9);
+            color: var(--white);
+            padding: 18px 24px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            padding: 18px 24px;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table .highlight {
+            font-weight: 700;
+            color: var(--orange-primary);
+        }
+
+        /* Tabs */
+        .tabs-container {
+            margin-top: 48px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            background: var(--text-primary);
+            color: var(--white);
+            border-color: transparent;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeSlide 0.5s ease;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-theme {
+            text-align: center;
+            margin-bottom: 32px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .tab-theme strong {
+            color: var(--text-primary);
+        }
+
+        /* Carousel Cards */
+        .carousel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .carousel-card {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .carousel-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(255, 140, 90, 0.12);
+        }
+
+        .carousel-header {
+            background: var(--text-primary);
+            color: var(--white);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .carousel-header h4 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .carousel-number {
+            background: var(--orange-primary);
+            width: 28px;
+            height: 28px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .carousel-slides {
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .slide {
+            padding: 14px 16px 14px 44px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-primary);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .slide:last-child {
+            margin-bottom: 0;
+            background: var(--orange-soft);
+            border: 1px solid var(--orange-border);
+        }
+
+        .slide::before {
+            content: attr(data-slide);
+            position: absolute;
+            left: 14px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-tertiary);
+        }
+
+        .slide:last-child::before {
+            color: var(--orange-primary);
+        }
+
+        /* Video Strategy */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .video-card {
+            padding: 36px 28px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .video-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            background: var(--orange-soft);
+            border: 1px solid var(--orange-border);
+        }
+
+        .video-card h4 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .video-count {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--orange-primary);
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .video-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Testimonial Section */
+        .testimonial-header {
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, rgba(255, 140, 90, 0.1) 0%, rgba(255, 180, 150, 0.05) 100%);
+            border: 1px solid var(--orange-border);
+        }
+
+        .testimonial-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-header p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .testimonial-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-flow {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .flow-step {
+            padding: 28px 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .flow-step .num {
+            width: 36px;
+            height: 36px;
+            background: var(--orange-primary);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .flow-step h5 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .flow-step p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Form Preview */
+        .form-preview {
+            padding: 36px;
+            border-radius: 24px;
+            margin-top: 32px;
+        }
+
+        .form-preview h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-field .icon {
+            width: 20px;
+            color: var(--text-tertiary);
+        }
+
+        .form-field span {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Message Templates */
+        .message-template {
+            padding: 28px;
+            border-radius: 20px;
+            margin-top: 24px;
+            border-left: 3px solid var(--orange-primary);
+        }
+
+        .message-template h5 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--orange-primary);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .message-template p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Incentive Grid */
+        .incentive-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .incentive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .incentive-item {
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            background: var(--orange-soft);
+            border: 1px solid var(--orange-border);
+        }
+
+        .incentive-item .emoji {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .incentive-item p {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* DM Flow */
+        .dm-flow-container {
+            padding: 36px;
+            border-radius: 24px;
+            margin-top: 32px;
+        }
+
+        .dm-cta {
+            background: var(--orange-soft);
+            border: 1px dashed var(--orange-border);
+            border-radius: 12px;
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .dm-cta p {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .dm-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dm-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .dm-step .step-num {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .dm-step:last-child .step-num {
+            background: var(--orange-primary);
+            color: white;
+        }
+
+        .dm-step p {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        /* Budget Section */
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .budget-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .budget-card {
+            padding: 36px 28px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .budget-amount {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--orange-primary);
+            margin-bottom: 6px;
+            letter-spacing: -1px;
+        }
+
+        .budget-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .budget-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.6);
+            padding: 12px 16px;
+            border-radius: 12px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 24px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--orange-soft), rgba(255, 140, 90, 0.3), var(--orange-soft));
+            border-radius: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 24px;
+            }
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 48px);
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: calc(50% + 48px);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 72px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            background: var(--orange-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-marker {
+                left: 24px;
+            }
+        }
+
+        .timeline-content {
+            padding: 28px;
+            border-radius: 20px;
+            max-width: 360px;
+        }
+
+        .timeline-content h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .timeline-content ul {
+            list-style: none;
+        }
+
+        .timeline-content li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--orange-primary);
+        }
+
+        /* Final Positioning */
+        .position-section {
+            padding: 100px 24px;
+            background: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .position-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 140, 90, 0.1) 0%, transparent 50%);
+        }
+
+        .position-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .position-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .position-header .section-tag {
+            background: rgba(255, 140, 90, 0.2);
+            border-color: rgba(255, 140, 90, 0.4);
+        }
+
+        .position-header .section-title {
+            color: var(--white);
+        }
+
+        .position-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .position-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .position-card {
+            padding: 40px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .position-card h4 {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .position-card ul {
+            list-style: none;
+        }
+
+        .position-card li {
+            font-size: 20px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: line-through;
+        }
+
+        .position-card li:last-child {
+            border-bottom: none;
+        }
+
+        .position-card.selling li {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .position-card.selling li::before {
+            content: '✓ ';
+            color: var(--orange-primary);
+        }
+
+        /* Final Quote */
+        .final-quote {
+            text-align: center;
+            padding: 100px 24px;
+            background: linear-gradient(180deg, var(--text-primary) 0%, #0a0a0a 100%);
+            position: relative;
+        }
+
+        .final-quote h2 {
+            font-size: clamp(32px, 6vw, 52px);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -1.5px;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            line-height: 1.2;
+        }
+
+        .final-quote h2 span {
+            background: linear-gradient(135deg, var(--orange-primary) 0%, #ffaa80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-quote p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #050505;
+            color: var(--white);
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        .footer-brands {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-brand span {
+            color: var(--orange-primary);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 13px;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-badge {
+                display: none;
+            }
+
+            .hero {
+                padding: 140px 20px 80px;
+            }
+
+            .hero-stats {
+                gap: 32px;
+                padding: 32px 24px;
+            }
+
+            .section {
+                padding: 70px 20px;
+            }
+
+            .carousel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .glass-card {
+                padding: 28px;
+            }
+        }
+
+        /* Progress Indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange-primary), #ffaa80);
+            z-index: 1001;
+            transition: width 0.1s;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            border: none;
+            font-size: 20px;
+            color: var(--text-primary);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="ambient-orb ambient-orb-1"></div>
+        <div class="ambient-orb ambient-orb-2"></div>
+        <div class="ambient-orb ambient-orb-3"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav class="nav glass">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="nav-logo">MATH<span>ETC</span></div>
+                <div class="nav-dot"></div>
+                <div class="nav-logo"><span>ASKA</span></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#strategy">Strategy</a></li>
+                <li><a href="#content">Content</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#execution">Execution</a></li>
+            </ul>
+            <div class="nav-badge">APRIL 2025</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-badge glass">
+            <span class="pulse"></span>
+            CAMPAIGN MASTER DOCUMENT
+        </div>
+        <h1>Build Their Summer.<br><span class="highlight">Build Their Future.</span></h1>
+        <p class="hero-subtitle">A dual-brand, cross-promotional campaign designed to dominate parent attention and convert summer program registrations.</p>
+        
+        <div class="hero-brands">
+            <div class="brand-card glass">
+                <div class="name">MATH<span>ETC</span></div>
+                <div class="desc">Academic Strength & Structure</div>
+            </div>
+            <div class="brand-card glass">
+                <div class="name"><span>ASKA</span></div>
+                <div class="desc">Discipline, Confidence & Physical Development</div>
+            </div>
+        </div>
+
+        <div class="hero-stats glass">
+            <div class="stat">
+                <div class="stat-value">32</div>
+                <div class="stat-label">Total Content</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">24</div>
+                <div class="stat-label">Carousels</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">8</div>
+                <div class="stat-label">Videos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value"><span class="unit">$</span>100</div>
+                <div class="stat-label">Ad Budget</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="section" id="strategy">
+        <div class="section-header fade-in">
+            <div class="section-tag">01 — Executive Summary</div>
+            <h2 class="section-title">Strategic Overview</h2>
+            <p class="section-desc">We're not chasing volume. We're building a controlled, high-converting content system.</p>
+        </div>
+
+        <div class="card-grid fade-in">
+            <div class="glass-card glass-subtle">
+                <div class="card-label">MATHETC</div>
+                <h3>Academic Excellence</h3>
+                <p>Building learning foundations, structured routines, and academic confidence through engaging summer programs.</p>
+                <div class="value-tags">
+                    <span class="value-tag">Learning</span>
+                    <span class="value-tag">Structure</span>
+                    <span class="value-tag">Academic Confidence</span>
+                </div>
+            </div>
+            <div class="glass-card glass-subtle">
+                <div class="card-label">ASKA</div>
+                <h3>Physical Development</h3>
+                <p>Channeling energy into discipline, building control, and developing personal confidence through martial arts.</p>
+                <div class="value-tags">
+                    <span class="value-tag">Discipline</span>
+                    <span class="value-tag">Control</span>
+                    <span class="value-tag">Personal Confidence</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="message-banner fade-in">
+            <div class="label">Unified Brand Message</div>
+            <h3>"We don't just prepare your child for school—<span>we prepare them for life.</span>"</h3>
+        </div>
+
+        <table class="data-table glass-subtle fade-in">
+            <thead>
+                <tr>
+                    <th>Content Type</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MATHETC Carousels</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>ASKA Carousels</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>Videos (Combined)</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td><strong>Total Content</strong></td>
+                    <td class="highlight"><strong>32</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Campaign Objectives -->
+    <section class="section">
+        <div class="section-header fade-in">
+            <div class="section-tag">02 — Campaign Objectives</div>
+            <h2 class="section-title">Clear Goals. Measurable Outcomes.</h2>
+        </div>
+
+        <div class="card-grid fade-in">
+            <div class="glass-card glass-subtle" style="border-left: 3px solid var(--orange-primary);">
+                <div class="card-label">Primary Objective</div>
+                <h3>Drive Summer Program Registrations</h3>
+                <p>Every piece of content is designed to move parents toward enrollment. No vanity metrics—only conversion-focused output.</p>
+            </div>
+            <div class="glass-card glass-subtle">
+                <div class="card-label">Secondary Objectives</div>
+                <h3>Build Trust & Generate Conversations</h3>
+                <div class="value-tags">
+                    <span class="value-tag">Trust through testimonials</span>
+                    <span class="value-tag">DM conversations</span>
+                    <span class="value-tag">Premium positioning</span>
+                </div>
+            </div>
+        </div>
+
+        <table class="data-table glass-subtle fade-in" style="margin-top: 48px;">
+            <thead>
+                <tr>
+                    <th>Content Type</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Carousels</td>
+                    <td>Attention + Education + Saves</td>
+                </tr>
+                <tr>
+                    <td>Videos (8 max)</td>
+                    <td>Proof + Reinforcement</td>
+                </tr>
+                <tr>
+                    <td>Testimonials</td>
+                    <td>Trust + Conversion</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Content Bank -->
+    <section class="section" id="content">
+        <div class="section-header fade-in">
+            <div class="section-tag">03 — Carousel Content Bank</div>
+            <h2 class="section-title">24 Ready-to-Deploy Carousels</h2>
+            <p class="section-desc">Your core content engine. Each carousel follows the proven hook → agitate → solve → convert structure.</p>
+        </div>
+
+        <div class="tabs-container fade-in">
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="mathetc">MATHETC (12 Carousels)</button>
+                <button class="tab-btn" data-tab="aska">ASKA (12 Carousels)</button>
+            </div>
+
+            <!-- MATHETC Tab -->
+            <div class="tab-content active" id="mathetc">
+                <p class="tab-theme"><strong>Theme:</strong> "Don't Let Summer Set Them Back"</p>
+                <div class="carousel-grid">
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Learning Loss</h4>
+                            <span class="carousel-number">1</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Summer is coming… but so is the learning loss</div>
+                            <div class="slide" data-slide="S2">You worked all year to keep them on track</div>
+                            <div class="slide" data-slide="S3">2 months can undo it</div>
+                            <div class="slide" data-slide="S4">Keep their minds active — Enrol in MATHETC Summer Camp</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Screens Take Over</h4>
+                            <span class="carousel-number">2</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">If you don't plan summer… screens will</div>
+                            <div class="slide" data-slide="S2">You can't monitor them all day</div>
+                            <div class="slide" data-slide="S3">Hours wasted. No growth</div>
+                            <div class="slide" data-slide="S4">Structured learning + fun — MATHETC Summer Camp</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Not Babysitting</h4>
+                            <span class="carousel-number">3</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">This is not babysitting</div>
+                            <div class="slide" data-slide="S2">You need more than supervision</div>
+                            <div class="slide" data-slide="S3">You need value for their time</div>
+                            <div class="slide" data-slide="S4">That's what we deliver daily</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>"I'm Bored" Season</h4>
+                            <span class="carousel-number">4</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">"I'm bored" is coming</div>
+                            <div class="slide" data-slide="S2">You'll hear it every day</div>
+                            <div class="slide" data-slide="S3">Same routine. Same boredom</div>
+                            <div class="slide" data-slide="S4">New skills. New friends. New experiences</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Smart Kids Fall Behind</h4>
+                            <span class="carousel-number">5</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Even smart kids fall behind</div>
+                            <div class="slide" data-slide="S2">It's not intelligence</div>
+                            <div class="slide" data-slide="S3">It's consistency</div>
+                            <div class="slide" data-slide="S4">We keep them sharp</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Future Building</h4>
+                            <span class="carousel-number">6</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Summer is not free time</div>
+                            <div class="slide" data-slide="S2">It's future time</div>
+                            <div class="slide" data-slide="S3">What they build now matters</div>
+                            <div class="slide" data-slide="S4">Invest in a smarter summer</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>No Structure</h4>
+                            <span class="carousel-number">7</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">No structure = no direction</div>
+                            <div class="slide" data-slide="S2">Late mornings. No routine</div>
+                            <div class="slide" data-slide="S3">Everything becomes chaotic</div>
+                            <div class="slide" data-slide="S4">We restore structure</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Better Fun</h4>
+                            <span class="carousel-number">8</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">They don't need more fun</div>
+                            <div class="slide" data-slide="S2">They need better fun</div>
+                            <div class="slide" data-slide="S3">Fun + learning = growth</div>
+                            <div class="slide" data-slide="S4">That's what we deliver</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Busy Parents</h4>
+                            <span class="carousel-number">9</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Busy parents need smart solutions</div>
+                            <div class="slide" data-slide="S2">You can't pause work</div>
+                            <div class="slide" data-slide="S3">They still need structure</div>
+                            <div class="slide" data-slide="S4">We handle both</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Confidence</h4>
+                            <span class="carousel-number">10</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Confidence doesn't grow on screens</div>
+                            <div class="slide" data-slide="S2">Real interaction matters</div>
+                            <div class="slide" data-slide="S3">Real growth happens offline</div>
+                            <div class="slide" data-slide="S4">We create that space</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Parents vs Kids</h4>
+                            <span class="carousel-number">11</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">What parents want vs kids want</div>
+                            <div class="slide" data-slide="S2">Parents: structure</div>
+                            <div class="slide" data-slide="S3">Kids: fun</div>
+                            <div class="slide" data-slide="S4">We give both</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Parent Guilt</h4>
+                            <span class="carousel-number">12</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">The summer guilt is real</div>
+                            <div class="slide" data-slide="S2">"Am I doing enough?"</div>
+                            <div class="slide" data-slide="S3">Kids feel the gap too</div>
+                            <div class="slide" data-slide="S4">Remove the guilt. Add structure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASKA Tab -->
+            <div class="tab-content" id="aska">
+                <p class="tab-theme"><strong>Theme:</strong> "Discipline. Confidence. Control."</p>
+                <div class="carousel-grid">
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Idle Kids</h4>
+                            <span class="carousel-number">1</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Idle time doesn't build discipline</div>
+                            <div class="slide" data-slide="S2">Too much freedom removes structure</div>
+                            <div class="slide" data-slide="S3">Energy becomes chaos</div>
+                            <div class="slide" data-slide="S4">Channel it with ASKA</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Confidence is Trained</h4>
+                            <span class="carousel-number">2</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Confidence is trained</div>
+                            <div class="slide" data-slide="S2">Not given</div>
+                            <div class="slide" data-slide="S3">Not wished for</div>
+                            <div class="slide" data-slide="S4">ASKA builds it daily</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Energy Without Direction</h4>
+                            <span class="carousel-number">3</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">High energy needs direction</div>
+                            <div class="slide" data-slide="S2">Without it, focus is lost</div>
+                            <div class="slide" data-slide="S3">Behaviour becomes unstable</div>
+                            <div class="slide" data-slide="S4">We bring control</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Beyond School</h4>
+                            <span class="carousel-number">4</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">School doesn't teach everything</div>
+                            <div class="slide" data-slide="S2">Respect</div>
+                            <div class="slide" data-slide="S3">Discipline</div>
+                            <div class="slide" data-slide="S4">ASKA does</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Bad Habits Start Early</h4>
+                            <span class="carousel-number">5</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Bad habits start in free time</div>
+                            <div class="slide" data-slide="S2">No routine</div>
+                            <div class="slide" data-slide="S3">No structure</div>
+                            <div class="slide" data-slide="S4">Fix it early</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Strength is Built</h4>
+                            <span class="carousel-number">6</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Strong kids are built</div>
+                            <div class="slide" data-slide="S2">Through challenge</div>
+                            <div class="slide" data-slide="S3">Through discipline</div>
+                            <div class="slide" data-slide="S4">Through training</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Focus Training</h4>
+                            <span class="carousel-number">7</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Focus is a skill</div>
+                            <div class="slide" data-slide="S2">Not a trait</div>
+                            <div class="slide" data-slide="S3">It must be trained</div>
+                            <div class="slide" data-slide="S4">ASKA trains it</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Character Building</h4>
+                            <span class="carousel-number">8</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Not all activities build character</div>
+                            <div class="slide" data-slide="S2">Some waste time</div>
+                            <div class="slide" data-slide="S3">Some build discipline</div>
+                            <div class="slide" data-slide="S4">Choose wisely</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Control Over Freedom</h4>
+                            <span class="carousel-number">9</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">They don't need more freedom</div>
+                            <div class="slide" data-slide="S2">They need control</div>
+                            <div class="slide" data-slide="S3">That builds confidence</div>
+                            <div class="slide" data-slide="S4">That builds strength</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Discipline First</h4>
+                            <span class="carousel-number">10</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Success comes later</div>
+                            <div class="slide" data-slide="S2">Discipline comes first</div>
+                            <div class="slide" data-slide="S3">That shapes behaviour</div>
+                            <div class="slide" data-slide="S4">Start now</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Parents vs Kids</h4>
+                            <span class="carousel-number">11</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Parents want focus</div>
+                            <div class="slide" data-slide="S2">Kids want action</div>
+                            <div class="slide" data-slide="S3">Both matter</div>
+                            <div class="slide" data-slide="S4">ASKA delivers both</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-card glass-subtle">
+                        <div class="carousel-header">
+                            <h4>Lasting Confidence</h4>
+                            <span class="carousel-number">12</span>
+                        </div>
+                        <div class="carousel-slides">
+                            <div class="slide" data-slide="S1">Confidence without discipline fades</div>
+                            <div class="slide" data-slide="S2">Pressure breaks it</div>
+                            <div class="slide" data-slide="S3">Training builds it</div>
+                            <div class="slide" data-slide="S4">We do both</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Strategy -->
+    <section class="section">
+        <div class="section-header fade-in">
+            <div class="section-tag">04 — Video Strategy</div>
+            <h2 class="section-title">8 Videos. Maximum Impact.</h2>
+            <p class="section-desc">Quality over quantity. Each video serves a specific purpose in the conversion journey.</p>
+        </div>
+
+        <div class="video-grid fade-in">
+            <div class="video-card glass-subtle">
+                <div class="video-icon">🎬</div>
+                <h4>Real Footage</h4>
+                <div class="video-count">4</div>
+                <p>Authentic proof of programs in action. Real students, real learning, real results.</p>
+            </div>
+            <div class="video-card glass-subtle">
+                <div class="video-icon">✨</div>
+                <h4>AI-Generated</h4>
+                <div class="video-count">2</div>
+                <p>Attention-grabbing hooks and visual storytelling to stop the scroll.</p>
+            </div>
+            <div class="video-card glass-subtle">
+                <div class="video-icon">🎨</div>
+                <h4>Animated</h4>
+                <div class="video-count">2</div>
+                <p>Clear explanations of programs and benefits in digestible format.</p>
+            </div>
+        </div>
+
+        <table class="data-table glass-subtle fade-in" style="margin-top: 48px;">
+            <thead>
+                <tr>
+                    <th>Video Type</th>
+                    <th>Purpose</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Real Footage</td>
+                    <td>Proof & Trust</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>AI-Generated</td>
+                    <td>Hook & Attention</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Animated</td>
+                    <td>Clarity & Education</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Testimonial System -->
+    <section class="section" id="testimonials">
+        <div class="section-header fade-in">
+            <div class="section-tag">05 — Testimonial System</div>
+            <h2 class="section-title">Parent Appreciation Reward Program</h2>
+            <p class="section-desc">Social proof is your conversion engine. Target: 20 parent testimonials for maximum impact.</p>
+        </div>
+
+        <div class="testimonial-header fade-in">
+            <h3>Collection Channels</h3>
+            <p>Brightwheel (Primary) • Email • Form Link (Core System)</p>
+        </div>
+
+        <div class="testimonial-flow fade-in">
+            <div class="flow-step glass-subtle">
+                <div class="num">1</div>
+                <h5>Request</h5>
+                <p>Send outreach via Brightwheel or email</p>
+            </div>
+            <div class="flow-step glass-subtle">
+                <div class="num">2</div>
+                <h5>Collect</h5>
+                <p>Gather review + parent-child photo</p>
+            </div>
+            <div class="flow-step glass-subtle">
+                <div class="num">3</div>
+                <h5>Reward</h5>
+                <p>Provide incentive to participant</p>
+            </div>
+            <div class="flow-step glass-subtle">
+                <div class="num">4</div>
+                <h5>Deploy</h5>
+                <p>Use in carousels, quotes, captions</p>
+            </div>
+        </div>
+
+        <div class="form-preview glass-subtle fade-in">
+            <h4>Form Structure</h4>
+            <div class="form-field">
+                <span class="icon">👤</span>
+                <span>Parent Full Name</span>
+            </div>
+            <div class="form-field">
+                <span class="icon">👧</span>
+                <span>Child's Name</span>
+            </div>
+            <div class="form-field">
+                <span class="icon">✉️</span>
+                <span>Email Address</span>
+            </div>
+            <div class="form-field">
+                <span class="icon">📱</span>
+                <span>Phone Number</span>
+            </div>
+            <div class="form-field">
+                <span class="icon">📝</span>
+                <span>Review (2-4 lines)</span>
+            </div>
+            <div class="form-field">
+                <span class="icon">📷</span>
+                <span>Upload Image (Parent + Child)</span>
+            </div>
+        </div>
+
+        <div class="message-template glass-subtle fade-in">
+            <h5>Parent Outreach Message</h5>
+            <p>Hello [Parent Name], As we prepare for our Summer Programs at MATHETC and ASKA, we would truly appreciate your feedback on your child's experience with us. Please fill this quick form (2–3 minutes). Kindly include a short review and a photo of you and your child. As a thank you, your child will receive a special appreciation reward from us.</p>
+        </div>
+
+        <h4 style="margin-top: 40px; margin-bottom: 16px; font-size: 16px; font-weight: 600;" class="fade-in">Incentive Options</h4>
+        <div class="incentive-grid fade-in">
+            <div class="incentive-item">
+                <div class="emoji">💰</div>
+                <p>Registration Discount</p>
+            </div>
+            <div class="incentive-item">
+                <div class="emoji">🍽️</div>
+                <p>Free Meal Reward</p>
+            </div>
+            <div class="incentive-item">
+                <div class="emoji">🎟️</div>
+                <p>Activity Pass</p>
+            </div>
+            <div class="incentive-item">
+                <div class="emoji">⭐</div>
+                <p>Priority Booking</p>
+            </div>
+        </div>
+
+        <table class="data-table glass-subtle fade-in" style="margin-top: 40px;">
+            <thead>
+                <tr>
+                    <th>Week</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Week 1</td>
+                    <td>Initial Outreach</td>
+                </tr>
+                <tr>
+                    <td>Week 2</td>
+                    <td>Follow-up Messages</td>
+                </tr>
+                <tr>
+                    <td>Week 3</td>
+                    <td>Final Push</td>
+                </tr>
+                <tr>
+                    <td>Week 4</td>
+                    <td>Publish Content</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Conversion System -->
+    <section class="section">
+        <div class="section-header fade-in">
+            <div class="section-tag">06 — Conversion System</div>
+            <h2 class="section-title">DM Flow & Paid Ads</h2>
+            <p class="section-desc">Turn engagement into enrollments with a systematic conversion process.</p>
+        </div>
+
+        <div class="dm-flow-container glass-subtle fade-in">
+            <h4 style="margin-bottom: 20px; font-size: 16px; font-weight: 600;">DM Conversion Flow</h4>
+            <div class="dm-cta">
+                <p>"Send us a message to secure your child's spot"</p>
+            </div>
+            <div class="dm-steps">
+                <div class="dm-step">
+                    <div class="step-num">1</div>
+                    <p>Ask child's age</p>
+                </div>
+                <div class="dm-step">
+                    <div class="step-num">2</div>
+                    <p>Ask preferred schedule</p>
+                </div>
+                <div class="dm-step">
+                    <div class="step-num">3</div>
+                    <p>Share program details</p>
+                </div>
+                <div class="dm-step">
+                    <div class="step-num">4</div>
+                    <p>Share pricing</p>
+                </div>
+                <div class="dm-step">
+                    <div class="step-num">5</div>
+                    <p>Close with urgency</p>
+                </div>
+            </div>
+        </div>
+
+        <h4 style="margin-top: 56px; margin-bottom: 24px; font-size: 18px; font-weight: 600; text-align: center;" class="fade-in">Paid Ads Allocation — $100 Budget</h4>
+        <div class="budget-grid fade-in">
+            <div class="budget-card glass-subtle">
+                <div class="budget-amount">$50</div>
+                <div class="budget-label">Carousel Promotion</div>
+                <div class="budget-desc">Boost best-performing carousel posts</div>
+            </div>
+            <div class="budget-card glass-subtle">
+                <div class="budget-amount">$30</div>
+                <div class="budget-label">Testimonial Ads</div>
+                <div class="budget-desc">Amplify strong social proof content</div>
+            </div>
+            <div class="budget-card glass-subtle">
+                <div class="budget-amount">$20</div>
+                <div class="budget-label">Retargeting</div>
+                <div class="budget-desc">Re-engage warm audiences</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Execution Timeline -->
+    <section class="section" id="execution">
+        <div class="section-header fade-in">
+            <div class="section-tag">07 — Execution Timeline</div>
+            <h2 class="section-title">Week-by-Week Rollout</h2>
+            <p class="section-desc">Structured deployment for maximum momentum building throughout April.</p>
+        </div>
+
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <div class="timeline-marker">W1</div>
+                <div class="timeline-content glass-subtle">
+                    <h4>Launch Phase</h4>
+                    <ul>
+                        <li>Begin carousel posting schedule</li>
+                        <li>Start testimonial outreach</li>
+                        <li>Establish daily rhythm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">W2</div>
+                <div class="timeline-content glass-subtle">
+                    <h4>Amplification Phase</h4>
+                    <ul>
+                        <li>Release first video content</li>
+                        <li>Publish collected testimonials</li>
+                        <li>Increase engagement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">W3</div>
+                <div class="timeline-content glass-subtle">
+                    <h4>Trust Building Phase</h4>
+                    <ul>
+                        <li>Release additional videos</li>
+                        <li>Heavy testimonial rotation</li>
+                        <li>Launch paid amplification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">W4</div>
+                <div class="timeline-content glass-subtle">
+                    <h4>Conversion Phase</h4>
+                    <ul>
+                        <li>Urgency push messaging</li>
+                        <li>Final registration drive</li>
+                        <li>Close early bird enrollment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Positioning -->
+    <section class="position-section">
+        <div class="position-inner">
+            <div class="position-header fade-in">
+                <div class="section-tag">08 — Final Positioning</div>
+                <h2 class="section-title">What You're Really Selling</h2>
+            </div>
+
+            <div class="position-grid fade-in">
+                <div class="position-card">
+                    <h4>YOU ARE NOT SELLING</h4>
+                    <ul>
+                        <li>A camp</li>
+                        <li>A class</li>
+                        <li>A schedule</li>
+                    </ul>
+                </div>
+                <div class="position-card selling">
+                    <h4>YOU ARE SELLING</h4>
+                    <ul>
+                        <li>Structure</li>
+                        <li>Discipline</li>
+                        <li>Confidence</li>
+                        <li>Growth</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Quote -->
+    <section class="final-quote">
+        <div class="fade-in">
+            <h2>"Strong minds. Strong bodies.<br><span>Strong future.</span>"</h2>
+            <p>UNIFIED BRAND MESSAGE</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brands">
+            <div class="footer-brand">MATH<span>ETC</span></div>
+            <div class="footer-brand"><span>ASKA</span></div>
+        </div>
+        <p>April Summer Campaign Master Document — Ready for Execution</p>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top glass" id="scrollTop">↑</button>
+
+    <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Scroll to top button
+            const scrollBtn = document.getElementById('scrollTop');
+            if (scrollTop > 500) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top click
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Fade In Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Tab Functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animate stats on load
+        const animateStats = () => {
+            const stats = document.querySelectorAll('.stat-value');
+            stats.forEach(stat => {
+                const text = stat.innerText;
+                const hasUnit = text.includes('$');
+                const numericValue = parseInt(text.replace(/\D/g, ''));
+                
+                if (isNaN(numericValue)) return;
+                
+                let current = 0;
+                const increment = numericValue / 40;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericValue) {
+                        if (hasUnit) {
+                            stat.innerHTML = '<span class="unit">$</span>' + numericValue;
+                        } else {
+                            stat.innerText = numericValue;
+                        }
+                        clearInterval(timer);
+                    } else {
+                        if (hasUnit) {
+                            stat.innerHTML = '<span class="unit">$</span>' + Math.floor(current);
+                        } else {
+                            stat.innerText = Math.floor(current);
+                        }
+                    }
+                }, 40);
+            });
+        };
+
+        // Trigger animation when hero stats are visible
+        const heroStatsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(animateStats, 300);
+                    heroStatsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            heroStatsObserver.observe(heroStats);
+        }
+
+        // Parallax effect for ambient orbs
+        window.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.ambient-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 10;
+                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
